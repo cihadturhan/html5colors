@@ -1,0 +1,36 @@
+<DOCTYPE html>
+
+<html>
+  <head>
+    <title>HTML5 Colors</title>
+    <script src="colors.js"></script>
+    <script>
+      colors.sort(function(a,b){
+        var c1 = /hsl\((\d{1,3}),\s?(\d{1,3})%?,\s?(\d{1,3})%?\)/.exec(a.hsl);
+        var c2 = /hsl\((\d{1,3}),\s?(\d{1,3})%?,\s?(\d{1,3})%?\)/.exec(b.hsl);
+
+
+        return (+c1[3] - +c2[3])*1 + (+c1[1] - +c2[1])*100 + (+c1[2] - +c2[2])*10;//a.hsl.localeCompare(b.hsl);
+      });
+      window.onload = function(){
+        colors.forEach(function(d){
+          var elem = document.createElement('div');
+          elem.className = 'colorbox';
+          elem.style.backgroundColor = d.hex;
+          elem.innerText = d.hsl;
+          document.body.appendChild(elem);
+        })
+      }
+    </script>
+    <style>
+      .colorbox{
+        width: 150px;
+        height: 150px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+
+  </body>
+</html>
